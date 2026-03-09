@@ -1,27 +1,67 @@
-//Create a constructor a functions which builds object for us
-function createPerson(name, height, weight) {
-  return { name: name, height: height, weight: weight };
+// Object literals
+let bob = {
+  fname: "bob",
+  lname: "smith",
+  age: 18,
+  height: 6,
+  transcript: [
+    { course: 'INFO 1603', 
+      grades: [89, 34, 67] },
+    { course: 'INFO 1601', 
+      grades: [89, 34, 67] }
+  ]
+};
+
+let sally = {
+  fname: "sally",
+  lname: "smith",
+  age: 18,
+  height: 6,
+  transcript: [
+    { course: 'INFO 1601', 
+      grades: [100, 89, 79] }
+  ]
+};
+
+let paul = {
+  fname: "paul",
+  lname: "smith",
+  age: 18,
+  height: 6,
+  transcript: [
+    { course: 'INFO 1600', 
+      grades: [89, 34, 67] }
+  ]
+};
+
+const students = [bob, sally, paul];
+
+
+function getAverateGrade(student, course) {
+  const entry = student.transcript.find(t => t.course === course);
+  if (!entry) return -1;
+
+  const sum = entry.grades.reduce((total, g) => total + g, 0);
+  return sum / entry.grades.length;
 }
 
-function calcBMI(weight, height) {
-  return weight / (height * height);
+
+function getAssignmentMark(student, course, num) {
+  const entry = student.transcript.find(t => t.course === course);
+  if (!entry) return -1;
+
+  return entry.grades[num] !== undefined ? entry.grades[num] : -1;
 }
 
-function avgBMI(people) {
-  let sum = 0;
-  for (let person of people) {
-    //sum the bmi of each person
-    sum += calcBMI(person.weight, person.height);
-  }
-  //calculate average
-  return sum / people.length;
+
+function averageAssessment(students, courseName, assignment) {
+  const marks = students
+    .map(student => getAssignmentMark(student, courseName, assignment))
+    .filter(mark => mark !== -1);
+
+  if (marks.length === 0) return -1;
+
+  const sum = marks.reduce((total, m) => total + m, 0);
+  return sum / marks.length;
 }
 
-//create a collection of people
-let people = [
-  createPerson("Sally", 60, 2.5),
-  createPerson("Ben", 81, 3),
-  createPerson("Shelly", 50, 1.7)
-];
-
-console.log(avgBMI(people));
