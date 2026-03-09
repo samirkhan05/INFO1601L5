@@ -32,10 +32,5 @@ function intCompare(a, b){
 //sort function must return either 0, +ve, -ve
 let ascending = arr.sort(intCompare)
 console.log(ascending);
-The function passed to sort must return either three type of values for two specified parameters a, b
 
-+ve number if a > b
--ve number if b > a
-0 if a === b
-Hence to sort in ascending order the function is (a, b) => a - b
 
