@@ -1,11 +1,11 @@
-let name = "bob";
-let age = 24;
-
-console.log(typeof(name))//string
-console.log(typeof(age))//number
-
-console.log(`Hello my name is ${name}, I'm ${age} years old`);
-//Hello my name is bob, I'm 24 years old.
-
-console.log(`I was born in ${2020 - age}`)
-//I was born in 1966
+for(let i=0; i< 50; i++){
+  if(i %3 === 0 && i%5 === 0){ // is divisible by 3 and 5?
+    console.log('fizzbuzz');
+  }else if(i%3 === 0){ // ok it's not divisible by both how about just 3?
+    console.log('fizz');
+  }else if(i%5 === 0){ //no? what about just 5 then?
+    console.log('buzz');
+  }else{              //so its not divisible by 3 or 5 then
+    console.log(i);
+  }
+}
